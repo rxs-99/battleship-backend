@@ -30,4 +30,6 @@ public class User {
     private int totalWins;
     @Column
     private int totalLosses;
+    @Column
+    private String email;
 }

@@ -1,26 +1,31 @@
 package com.battleship_backend.battleship_backend;
 
-import java.util.List;
-
-import com.battleship_backend.models.User;
-import com.battleship_backend.service.AuthService;
-import com.battleship_backend.service.UserService;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"com.battleship_backend.models"})
 @ComponentScan("com.battleship_backend")
-@EnableJpaRepositories(basePackages = {"com.battleship_backend.repository","com.battleship_backend.models"})
+@EnableJpaRepositories(basePackages = {"com.battleship_backend.repository"})
 public class BattleshipBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BattleshipBackendApplication.class, args);
 	}
 
+	@Bean
+	public WebMvcConfigurer corsConfigurer(){
+		return new WebMvcConfigurer(){
+			@Override
+			public void addCorsMappings(CorsRegistry registry){
+				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+			}
+		};
+	}
 }

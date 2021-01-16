@@ -41,6 +41,7 @@ public class AuthController {
 
     @PostMapping(value="/login", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<User> getUser(@RequestBody Login loginInfo){
+        System.out.println("\n" + loginInfo.getUsername() + " " + loginInfo.getPassword() + "\n");
         return new ResponseEntity<User>(this.authService.getUser(loginInfo.getUsername(), loginInfo.getPassword()), HttpStatus.OK);
     }
 

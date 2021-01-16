@@ -28,7 +28,7 @@ public class Game {
     @Column
     private String saveName;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String jsonAsText;
 
     @Column(nullable = false, updatable = false)
